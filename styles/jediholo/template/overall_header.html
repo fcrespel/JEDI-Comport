@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html dir="{S_CONTENT_DIRECTION}" lang="{S_USER_LANG}">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+{META}
+<title><!-- IF UNREAD_NOTIFICATIONS_COUNT -->({UNREAD_NOTIFICATIONS_COUNT}) <!-- ENDIF --><!-- IF not S_VIEWTOPIC and not S_VIEWFORUM -->{SITENAME} &raquo; <!-- ENDIF --><!-- IF S_IN_MCP -->{L_MCP} &raquo; <!-- ELSEIF S_IN_UCP -->{L_UCP} &raquo; <!-- ENDIF -->{PAGE_TITLE}<!-- IF S_VIEWTOPIC or S_VIEWFORUM --> &raquo; {SITENAME}<!-- ENDIF --></title>
+
+<!-- IF S_ENABLE_FEEDS -->
+	<!-- IF S_ENABLE_FEEDS_OVERALL --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {SITENAME}" href="{{ path('phpbb_feed_index') }}"><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_NEWS --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FEED_NEWS}" href="{{ path('phpbb_feed_news') }}"><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_FORUMS --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_ALL_FORUMS}" href="{{ path('phpbb_feed_forums') }}"><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_TOPICS --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FEED_TOPICS_NEW}" href="{{ path('phpbb_feed_topics') }}"><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_TOPICS_ACTIVE --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FEED_TOPICS_ACTIVE}" href="{{ path('phpbb_feed_topics_active') }}"><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_FORUM and S_FORUM_ID --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FORUM} - {FORUM_NAME}" href="{{ path('phpbb_feed_forum', { forum_id : S_FORUM_ID } ) }}"><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_TOPIC and S_TOPIC_ID --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_TOPIC} - {TOPIC_TITLE}" href="{{ path('phpbb_feed_topic', { topic_id : S_TOPIC_ID } ) }}"><!-- ENDIF -->
+	<!-- EVENT overall_header_feeds -->
+<!-- ENDIF -->
+
+<!-- IF U_CANONICAL -->
+	<link rel="canonical" href="{U_CANONICAL}">
+<!-- ENDIF -->
+
+<!--
+	phpBB style name: jediholo
+	Based on style:   prosilver (this is the default phpBB3 style)
+	Original author:  Tom Beddard ( http://www.subBlue.com/ )
+	Modified by:      Fabien Crespel for ::JEDI:: (www.jediholo.net)
+-->
+
+<!-- IF S_ALLOW_CDN -->
+<script>
+	WebFontConfig = {
+		google: {
+			families: ['Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese']
+		}
+	};
+
+	(function(d) {
+		var wf = d.createElement('script'), s = d.scripts[0];
+		wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js';
+		wf.async = true;
+		s.parentNode.insertBefore(wf, s);
+	})(document);
+</script>
+<!-- ENDIF -->
+<link href="//static.jediholo.net/css/layout-min.css" rel="stylesheet">
+<link href="{T_FONT_AWESOME_LINK}" rel="stylesheet">
+<link href="{ROOT_PATH}styles/prosilver/theme/stylesheet.css?assets_version={T_ASSETS_VERSION}" rel="stylesheet">
+<link href="{T_STYLESHEET_LINK}" rel="stylesheet">
+<link href="{T_STYLESHEET_LANG_LINK}" rel="stylesheet">
+
+<!-- IF S_CONTENT_DIRECTION eq 'rtl' -->
+	<link href="{T_THEME_PATH}/bidi.css?assets_version={T_ASSETS_VERSION}" rel="stylesheet">
+<!-- ENDIF -->
+
+<!-- IF S_PLUPLOAD -->
+	<link href="{T_THEME_PATH}/plupload.css?assets_version={T_ASSETS_VERSION}" rel="stylesheet">
+<!-- ENDIF -->
+
+<!-- IF S_COOKIE_NOTICE -->
+	<link href="{T_ASSETS_PATH}/cookieconsent/cookieconsent.min.css?assets_version={T_ASSETS_VERSION}" rel="stylesheet">
+<!-- ENDIF -->
+
+<!--[if lte IE 9]>
+	<link href="{T_THEME_PATH}/tweaks.css?assets_version={T_ASSETS_VERSION}" rel="stylesheet">
+<![endif]-->
+
+<!-- EVENT overall_header_head_append -->
+
+{$STYLESHEETS}
+
+<!-- EVENT overall_header_stylesheets_after -->
+
+</head>
+<body id="phpbb" class="nojs notouch section-{SCRIPT_NAME} {S_CONTENT_DIRECTION} {BODY_CLASS}">
+
+<!-- EVENT overall_header_body_before -->
+
+<div id="mainContainer">
+
+	<!-- Header -->
+	<div class="headerContainer" id="header-comport">
+		<ul id="mainNav">
+			<li id="mainNav-holonet"><a href="//www.jediholo.net">HoloNet</a></li>
+			<li id="mainNav-comport" class="active"><a href="//comport.jediholo.net">Comport</a></li>
+			<li id="mainNav-rpmod"><a href="//rpmod.jediholo.net">RPMod</a></li>
+		</ul>
+		<div id="headerFrame"></div>
+	</div>
+
+	<!-- Navigation -->
+	<div id="navContainer">
+		<h2>Navigation</h2>
+		<div id="headerJoinLeft"></div>
+		<div id="headerJoinRight"></div>
+		<div id="navFrame"></div>
+		<ul class="navList">
+			<li class="navItem active" id="navItem-index"><a href="{U_INDEX}"<!-- IF not S_IN_UCP and not S_IN_SEARCH and S_FORUM_ID neq '101' and SCRIPT_NAME neq 'memberlist' --> class="active"<!-- ENDIF -->>Index</a>
+				<ul><li>Category &amp; Thread Index</li></ul>
+			</li>
+			<li class="navItem" id="navItem-members"><a href="{U_MEMBERLIST}"<!-- IF SCRIPT_NAME eq 'memberlist' --> class="active"<!-- ENDIF -->>Members</a>
+				<ul><li>Registered User List</li></ul>
+			</li>
+			<li class="navItem" id="navItem-inbox"><a href="{U_PRIVATEMSGS}"<!-- IF S_IN_INBOX --> class="active"<!-- ENDIF -->>Inbox</a>
+				<ul><li>Private Messages</li></ul>
+			</li>
+			<li class="navItem" id="navItem-cpanel"><a href="{U_PROFILE}"<!-- IF S_IN_UCP and not S_IN_INBOX --> class="active"<!-- ENDIF -->>CPanel</a>
+				<ul><li>Comport Settings</li></ul>
+			</li>
+			<li class="navItem" id="navItem-search"><a href="{U_SEARCH}"<!-- IF S_IN_SEARCH --> class="active"<!-- ENDIF -->>Search</a>
+				<ul><li>Advanced Search</li></ul>
+			</li>
+			<li class="navItem" id="navItem-rulestips"><a href="viewforum.php?f=101"<!-- IF S_FORUM_ID eq '101' --> class="active"<!-- ENDIF -->>Rules &amp; Tips</a>
+				<ul><li>Category Quick-Link</li></ul>
+			</li>
+		</ul>
+		<div id="clock"></div>
+	</div>
+
+	<!-- Content -->
+	<div id="contentContainer">
+
+		<!-- Content frame -->
+		<div id="contentFrameTop">
+			<div id="contentFrameTopLeft"></div>
+			<div id="contentFrameTopSpacer"></div>
+			<div id="contentFrameTopRight"></div>
+		</div>
+		<div id="contentFrameCornerTopLeft"></div>
+		<div id="contentFrameCornerTopRight"></div>
+		<div id="contentFrameLeft">
+			<div id="contentFrameLeftTop"></div>
+			<div id="contentFrameLeftSpacer"></div>
+			<div id="contentFrameLeftBottom"></div>
+		</div>
+		<div id="contentFrameRight">
+			<div id="contentFrameRightTop"></div>
+			<div id="contentFrameRightSpacer"></div>
+			<div id="contentFrameRightBottom"></div>
+		</div>
+		<div id="contentFrameCornerBottomLeft"></div>
+		<div id="contentFrameCornerBottomRight"></div>
+		<div id="contentFrameBottom">
+			<div id="contentFrameBottomLeft"></div>
+			<div id="contentFrameBottomSpacer"></div>
+			<div id="contentFrameBottomRight"></div>
+		</div>
+
+		<!-- Actual content -->
+		<div id="content">
+
+			<!-- Content header bar -->
+			<div id="contentHeader">
+				<!-- EVENT overall_header_headerbar_before -->
+				<!-- Page title -->
+				<h2><a href="<!-- IF U_SITE_HOME -->{U_SITE_HOME}<!-- ELSE -->{U_INDEX}<!-- ENDIF -->">{SITENAME}</a> <!-- BEGIN navlinks --> &raquo; <a href="{navlinks.U_VIEW_FORUM}">{navlinks.FORUM_NAME}</a><!-- END navlinks --></h2>
+				<div class="contentNav">
+					<ul>
+						<!-- IF S_NOTIFICATIONS_DISPLAY -->
+							<li class="dropdown-container dropdown-{S_CONTENT_FLOW_END}" data-skip-responsive="true">
+								<a href="{U_VIEW_ALL_NOTIFICATIONS}" id="notification_list_button" class="dropdown-trigger <!-- IF NOTIFICATIONS_COUNT -->highlighted<!-- ENDIF -->">
+									<span>{L_NOTIFICATIONS} </span><strong<!-- IF not NOTIFICATIONS_COUNT --> class="hidden"<!-- ENDIF -->> ({NOTIFICATIONS_COUNT})</strong>
+								</a>
+								<!-- INCLUDE notification_dropdown.html -->
+							</li>
+						<!-- ENDIF -->
+						<!-- IF S_DISPLAY_PM -->
+							<li data-skip-responsive="true">
+								<a href="{U_PRIVATEMSGS}" <!-- IF PRIVATE_MESSAGE_COUNT -->class="highlighted"<!-- ENDIF -->>
+									<span>{L_PRIVATE_MESSAGES} </span><strong<!-- IF not PRIVATE_MESSAGE_COUNT --> class="hidden"<!-- ENDIF -->> ({PRIVATE_MESSAGE_COUNT})</strong>
+								</a>
+							</li>
+						<!-- ENDIF -->
+						<li id="quick-links" class="quick-links dropdown-container responsive-menu<!-- IF not S_DISPLAY_QUICK_LINKS and not S_DISPLAY_SEARCH --> hidden<!-- ENDIF -->" data-skip-responsive="true">
+							<a href="#" class="dropdown-trigger">
+								<span>{L_QUICK_LINKS}</span>
+							</a>
+							<div class="dropdown">
+								<div class="pointer"><div class="pointer-inner"></div></div>
+								<ul class="dropdown-contents" role="menu">
+									<!-- EVENT navbar_header_quick_links_before -->
+
+									<!-- IF S_DISPLAY_SEARCH -->
+										<li class="separator"></li>
+										<!-- IF S_REGISTERED_USER -->
+											<li>
+												<a href="{U_SEARCH_SELF}" role="menuitem">
+													<i class="icon fa-file-o fa-fw icon-gray" aria-hidden="true"></i><span>{L_SEARCH_SELF}</span>
+												</a>
+											</li>
+										<!-- ENDIF -->
+										<!-- IF S_USER_LOGGED_IN -->
+											<li>
+												<a href="{U_SEARCH_NEW}" role="menuitem">
+													<i class="icon fa-file-o fa-fw icon-red" aria-hidden="true"></i><span>{L_SEARCH_NEW}</span>
+												</a>
+											</li>
+										<!-- ENDIF -->
+										<!-- IF S_LOAD_UNREADS -->
+											<li>
+												<a href="{U_SEARCH_UNREAD}" role="menuitem">
+													<i class="icon fa-file-o fa-fw icon-red" aria-hidden="true"></i><span>{L_SEARCH_UNREAD}</span>
+												</a>
+											</li>
+										<!-- ENDIF -->
+											<li>
+												<a href="{U_SEARCH_UNANSWERED}" role="menuitem">
+													<i class="icon fa-file-o fa-fw icon-gray" aria-hidden="true"></i><span>{L_SEARCH_UNANSWERED}</span>
+												</a>
+											</li>
+											<li>
+												<a href="{U_SEARCH_ACTIVE_TOPICS}" role="menuitem">
+													<i class="icon fa-file-o fa-fw icon-blue" aria-hidden="true"></i><span>{L_SEARCH_ACTIVE_TOPICS}</span>
+												</a>
+											</li>
+											<li class="separator"></li>
+											<li>
+												<a href="{U_SEARCH}" role="menuitem">
+													<i class="icon fa-search fa-fw" aria-hidden="true"></i><span>{L_SEARCH}</span>
+												</a>
+											</li>
+									<!-- ENDIF -->
+
+									<!-- IF not S_IS_BOT and (S_DISPLAY_MEMBERLIST or U_TEAM) -->
+										<li class="separator"></li>
+										<!-- IF S_DISPLAY_MEMBERLIST -->
+											<li>
+												<a href="{U_MEMBERLIST}" role="menuitem">
+													<i class="icon fa-group fa-fw" aria-hidden="true"></i><span>{L_MEMBERLIST}</span>
+												</a>
+											</li>
+										<!-- ENDIF -->
+										<!-- IF U_TEAM -->
+											<li>
+												<a href="{U_TEAM}" role="menuitem">
+													<i class="icon fa-shield fa-fw" aria-hidden="true"></i><span>{L_THE_TEAM}</span>
+												</a>
+											</li>
+										<!-- ENDIF -->
+									<!-- ENDIF -->
+									<li class="separator"></li>
+
+									<!-- EVENT navbar_header_quick_links_after -->
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="clear"></div>
+				<!-- EVENT overall_header_headerbar_after -->
+			</div>
+
+			<div id="wrap" class="wrap">
+				<a id="top" class="top-anchor" accesskey="t"></a>
+
+				<!-- EVENT overall_header_page_body_before -->
+
+				<a id="start_here" class="anchor"></a>
+				<div id="page-body" class="page-body" role="main">
+					<!-- IF S_BOARD_DISABLED and S_USER_LOGGED_IN and (U_MCP or U_ACP) -->
+					<div id="information" class="rules">
+						<div class="inner">
+							<strong>{L_INFORMATION}{L_COLON}</strong> {L_BOARD_DISABLED}
+						</div>
+					</div>
+					<!-- ENDIF -->
+
+					<!-- EVENT overall_header_content_before -->
