@@ -155,7 +155,18 @@
 			<div id="contentHeader">
 				<!-- EVENT overall_header_headerbar_before -->
 				<!-- Page title -->
-				<h2><a href="<!-- IF U_SITE_HOME -->{U_SITE_HOME}<!-- ELSE -->{U_INDEX}<!-- ENDIF -->">{SITENAME}</a> <!-- BEGIN navlinks --> &raquo; <a href="{navlinks.U_VIEW_FORUM}">{navlinks.FORUM_NAME}</a><!-- END navlinks --></h2>
+				<h2>
+					<a href="{% if U_SITE_HOME %}{{ U_SITE_HOME }}{% else %}{{ U_INDEX }}{% endif %}">{SITENAME}</a>
+					<!-- EVENT overall_header_breadcrumb_prepend -->
+					<!-- BEGIN navlinks -->
+						{% set NAVLINK_NAME = navlinks.BREADCRUMB_NAME | default(navlinks.FORUM_NAME) %}
+						{% set NAVLINK_LINK = navlinks.U_BREADCRUMB | default(navlinks.U_VIEW_FORUM) %}
+						<!-- EVENT overall_header_navlink_prepend -->
+						&raquo; <a href="{{ NAVLINK_LINK }}">{{ NAVLINK_NAME }}</a>
+						<!-- EVENT overall_header_navlink_append -->
+					<!-- END navlinks -->
+					<!-- EVENT overall_header_breadcrumb_append -->
+				</h2>
 				<div class="contentNav">
 					<ul>
 						<!-- IF S_NOTIFICATIONS_DISPLAY -->
