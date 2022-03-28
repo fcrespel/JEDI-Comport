@@ -1,7 +1,7 @@
 version: '3.5'
 services:
   phpbb:
-    image: bitnami/phpbb:3.3.4
+    image: bitnami/phpbb:3.3.7
     ports:
       - '127.0.0.12:80:8080'
     volumes:
@@ -11,8 +11,6 @@ services:
     environment:
       - PHPBB_USERNAME=admin
       - PHPBB_PASSWORD=admin
-      - PHPBB_FIRST_NAME=System
-      - PHPBB_LAST_NAME=Administrator
       - PHPBB_FORUM_NAME=JEDI Comport
       - PHPBB_FORUM_DESCRIPTION=The JEDI HoloNet Communications Port
       - PHPBB_EMAIL=admin@jediholo.net
@@ -21,7 +19,7 @@ services:
       - PHPBB_DATABASE_PASSWORD=jediholo
       - PHPBB_DATABASE_NAME=jedi-comport
   mysql:
-    image: ghcr.io/fab-infra/mariadb:10.4-opensuse15
+    image: ghcr.io/fab-infra/mariadb:10.5-opensuse15
     ports:
       - '127.0.0.12:3306:3306'
     volumes:
