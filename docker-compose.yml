@@ -1,7 +1,7 @@
 version: '3.5'
 services:
   phpbb:
-    image: bitnami/phpbb:3.3.7
+    image: bitnami/phpbb:3.3.9
     ports:
       - '127.0.0.12:80:8080'
     volumes:
@@ -19,7 +19,7 @@ services:
       - PHPBB_DATABASE_PASSWORD=jediholo
       - PHPBB_DATABASE_NAME=jedi-comport
   mysql:
-    image: ghcr.io/fab-infra/mariadb:10.5-opensuse15
+    image: ghcr.io/fab-infra/mariadb:10.6-opensuse15
     ports:
       - '127.0.0.12:3306:3306'
     volumes:

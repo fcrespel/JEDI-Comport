@@ -40,7 +40,8 @@
 			<!-- IF not S_USER_LOGGED_IN and S_REGISTER_ENABLED and not (S_SHOW_COPPA or S_REGISTRATION) --><a href="{U_REGISTER}">{L_REGISTER}</a> -<!-- ENDIF -->
 			<a href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a>
 			<!-- ENDIF -->
-			<!-- IF U_ACP -->- <a href="{U_ACP}">{L_ACP}</a><!-- ENDIF -->
+			<!-- IF U_MCP -->- <a href="{U_MCP}">Moderation</a><!-- ENDIF -->
+			<!-- IF U_ACP -->- <a href="{U_ACP}">Admin</a><!-- ENDIF -->
 			</p>
 		</div>
 
@@ -51,7 +52,7 @@
 </div>
 
 <script src="{T_JQUERY_LINK}"></script>
-<!-- IF S_ALLOW_CDN --><script>window.jQuery || document.write('\x3Cscript src="{T_ASSETS_PATH}/javascript/jquery-3.4.1.min.js?assets_version={T_ASSETS_VERSION}">\x3C/script>');</script><!-- ENDIF -->
+<!-- IF S_ALLOW_CDN --><script>window.jQuery || document.write('\x3Cscript src="{T_ASSETS_PATH}/javascript/jquery-3.6.0.min.js?assets_version={T_ASSETS_VERSION}">\x3C/script>');</script><!-- ENDIF -->
 <script src="{T_ASSETS_PATH}/javascript/core.js?assets_version={T_ASSETS_VERSION}"></script>
 <!-- INCLUDEJS forum_fn.js -->
 <!-- INCLUDEJS ajax.js -->
