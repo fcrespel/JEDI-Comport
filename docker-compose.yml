@@ -1,11 +1,10 @@
-version: '3.5'
 services:
   phpbb:
     image: bitnami/phpbb:3.3.11
     ports:
       - '127.0.0.12:80:8080'
     volumes:
-      - './.docker/phpbb:/bitnami/phpbb'
+      - 'phpbb:/bitnami/phpbb'
       - './setup.sh:/docker-entrypoint-init.d/setup.sh'
       - './styles/jediholo:/phpbb/styles/jediholo'
     environment:
@@ -19,12 +18,16 @@ services:
       - PHPBB_DATABASE_PASSWORD=jediholo
       - PHPBB_DATABASE_NAME=jedi-comport
   mysql:
-    image: ghcr.io/fab-infra/mariadb:10.6-opensuse15
+    image: mariadb:10.11
     ports:
       - '127.0.0.12:3306:3306'
     volumes:
-      - './.docker/mysql:/var/lib/mysql'
+      - 'mysql:/var/lib/mysql'
     environment:
-      MYSQL_USER: jediholo
-      MYSQL_PASSWORD: jediholo
-      MYSQL_DATABASE: jedi-comport
+      - MYSQL_ROOT_PASSWORD=jediholo
+      - MYSQL_USER=jediholo
+      - MYSQL_PASSWORD=jediholo
+      - MYSQL_DATABASE=jedi-comport
+volumes:
+  mysql:
+  phpbb:

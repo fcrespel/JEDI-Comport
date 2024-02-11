@@ -8,7 +8,7 @@ To make local development easier, you can use [Docker](https://docs.docker.com/e
 
 ```
 # Pull and start all containers
-docker-compose up -d
+docker compose up -d
 ```
 
 Then, point your browser to http://comport.dev.jediholo.net and you should see the JEDI Comport forum.
@@ -17,9 +17,9 @@ Login as admin/admin, then go to the ACP:
 - In Customize > Install Styles, install the `jediholo` style.
 - In General > Board settings, set `jediholo` as the Default and Guest style.
 
-To stop all containers, run `docker-compose stop`. \
-To remove containers, run `docker-compose down`. \
-To remove data, delete the `.docker` directory.
+To stop all containers, run `docker compose stop`. \
+To remove containers, run `docker compose down`. \
+To remove containers and data, run `docker compose down -v`.
 
 ## Credits
 
