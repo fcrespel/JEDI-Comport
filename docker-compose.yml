@@ -1,6 +1,6 @@
 services:
   phpbb:
-    image: bitnami/phpbb:3.3.11
+    image: bitnami/phpbb:3.3.12
     ports:
       - '127.0.0.12:80:8080'
     volumes:
